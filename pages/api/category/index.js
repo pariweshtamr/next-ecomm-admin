@@ -2,8 +2,12 @@ import dbConnect from "@/lib/mongoose"
 import Category from "@/models/CategorySchema"
 
 const addCat = async (req, res) => {
+  const { parentCat, ...rest } = req.body
   try {
-    const category = await Category.create(req.body)
+    const category = await Category.create({
+      parent: parentCat || undefined,
+      ...rest,
+    })
 
     if (!category?._id) {
       res.json({ status: "error", message: "Unable to add category!" })

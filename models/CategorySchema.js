@@ -10,6 +10,7 @@ const CategorySchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "Category",
     },
+    properties: [{ name: { type: String }, values: [{ type: String }] }],
   },
   { timestamps: true }
 )
