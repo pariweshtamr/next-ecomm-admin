@@ -54,9 +54,22 @@ const updateProd = async (req, res) => {
 const deleteProd = async (req, res) => {
   const { id } = req.query
   try {
-    const deleteProduct = await Product.deleteOne({ id })
+    if (id) {
+      const deleteProduct = await Product.deleteOne({ _id: id })
 
-    console.log(deleteProduct)
+      if (!deleteProduct?.deletedCount) {
+        return res.json({
+          status: "error",
+          message: "Unable to delete product!",
+        })
+      }
+      return res.json({
+        status: "success",
+        message: "Product deleted successfully!",
+      })
+    }
+
+    res.json({ status: "error", message: "Product not found!" })
   } catch (error) {
     res.send(error)
   }

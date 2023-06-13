@@ -25,13 +25,15 @@ const Products = () => {
         <thead>
           <tr>
             <td>Product Name</td>
-            <td></td>
+            <td>Product Price</td>
+            <td>Actions</td>
           </tr>
         </thead>
         <tbody>
           {prods?.map((product) => (
             <tr key={product._id}>
               <td>{product.title}</td>
+              <td>${product.price}</td>
               <td className="flex gap-1.5">
                 <Link
                   href={`/products/edit/${product._id}`}
