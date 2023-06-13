@@ -3,51 +3,63 @@
 @tailwind utilities;
 
 img {
-  width: 100%;
   max-height: 100%;
 }
 
 input,
-textarea {
-  @apply border border-gray-300 rounded-md p-2 w-full;
+textarea,
+select {
+  @apply border border-white rounded-md p-2 w-full;
   @apply mb-3;
 }
 
 input:focus,
-textarea:focus {
-  @apply border-blue-900;
+textarea:focus,
+select:focus {
+  @apply border border-black outline-none;
 }
 
 h1 {
-  @apply text-blue-900 mb-4 text-xl font-bold;
+  @apply text-[#0c0c0c] mb-4 text-xl font-bold;
 }
 
 label {
-  @apply text-blue-900;
+  @apply text-[#0c0c0c];
 }
 
 .btn-primary {
-  @apply bg-blue-900 text-white py-2 px-4 rounded-md;
+  @apply bg-[#FCD3BC] text-[#0c0c0c];
 }
+
+.btn-secondary {
+  @apply bg-[#B8E0FF] text-[#0c0c0c];
+}
+
 .btn-red {
   @apply bg-red-700;
 }
+.btn-success {
+  @apply bg-[#AEFFBE] text-[#0c0c0c];
+}
 .btn-default {
-  @apply bg-gray-400;
+  @apply bg-gray-200 text-[#0c0c0c];
 }
 .btn-red,
-.btn-default {
-  @apply px-4 py-1 rounded-md text-white;
+.btn-default,
+.btn-success,
+.btn-primary,
+.btn-secondary {
+  @apply p-2 rounded-md hover:shadow-[2px_5px_27px_-8px_rgba(0,0,0,0.3)];
 }
 table.basic {
   @apply w-full;
 }
 table.basic thead tr td {
-  @apply bg-blue-100;
+  @apply bg-blue-100 font-bold;
 }
 table.basic tr td {
-  @apply border border-blue-200 p-2;
+  @apply border border-[#B8E0FF] p-2;
 }
 table.basic a {
-  @apply bg-blue-900 text-white p-1 px-2 rounded-md inline-flex;
+  @apply bg-[#B8E0FF] text-[#0c0c0c] hover:shadow-[2px_5px_27px_-8px_rgba(0,0,0,0.3)] p-2 rounded-md inline-flex;
 }

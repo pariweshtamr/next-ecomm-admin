@@ -1,8 +1,8 @@
-import { useState } from "react"
+/* eslint-disable @next/next/no-img-element */
+import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
-import { addProduct, editProduct } from "@/lib/axiosHelper"
+import { addProduct, editProduct, getAllCategories } from "@/lib/axiosHelper"
 import axios from "axios"
-import Image from "next/image"
 import Spinner from "./Spinner"
 import { ReactSortable } from "react-sortablejs"
 
@@ -10,11 +10,22 @@ const initialState = {
   title: "",
   desc: "",
   price: "",
+  category: "",
 }
 
-const ProductForm = ({ title, desc, price, _id, images: existingImages }) => {
+const ProductForm = ({
+  title,
+  desc,
+  price,
+  _id,
+  images: existingImages,
+  category,
+}) => {
   const [images, setImages] = useState(existingImages || [])
-  const [form, setForm] = useState({ title, desc, price } || initialState)
+  const [form, setForm] = useState(
+    { title, desc, price, category } || initialState
+  )
+  const [cats, setCats] = useState([])
   const [isUploading, setIsUploading] = useState(false)
   const router = useRouter()
   const cloudName = process.env.NEXT_PUBLIC_CLOUDNAME
@@ -63,7 +74,6 @@ const ProductForm = ({ title, desc, price, _id, images: existingImages }) => {
       }
     } else {
       // add new product
-
       const { status, message, product } = await addProduct({ ...form, images })
 
       if (status === "success") {
@@ -76,6 +86,14 @@ const ProductForm = ({ title, desc, price, _id, images: existingImages }) => {
     setImages(images)
   }
 
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const categories = await getAllCategories()
+      setCats(categories)
+    }
+    fetchCategories()
+  }, [])
+
   return (
     <form onSubmit={handleSubmit}>
       <label>Product Name</label>
@@ -86,6 +104,16 @@ const ProductForm = ({ title, desc, price, _id, images: existingImages }) => {
         onChange={handleChange}
         value={form?.title}
       />
+      <label>Product category</label>
+      <select name="category" onChange={handleChange} value={form.category}>
+        <option value="">No category</option>
+        {cats?.length > 0 &&
+          cats.map((category) => (
+            <option key={category._id} value={category._id}>
+              {category.name}
+            </option>
+          ))}
+      </select>
       <label>Photos</label>
       <div className="mb-2 flex flex-wrap gap-2">
         <ReactSortable
@@ -147,7 +175,7 @@ const ProductForm = ({ title, desc, price, _id, images: existingImages }) => {
         onChange={handleChange}
         value={form?.price}
       />
-      <button type="submit" className="btn-primary">
+      <button type="submit" className="btn-success">
         Save
       </button>
     </form>

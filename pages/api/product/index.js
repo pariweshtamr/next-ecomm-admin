@@ -21,7 +21,9 @@ const addProd = async (req, res) => {
 const getAllProds = async (req, res) => {
   const { id } = req.query
   try {
-    const products = id ? await Product.findById(id) : await Product.find()
+    const products = id
+      ? await Product.findById(id)
+      : await Product.find().populate("category")
 
     res.json(products)
   } catch (error) {

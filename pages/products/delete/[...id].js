@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout"
-import { deleteProduct, getSingleProduct } from "@/lib/axiosHelper"
+import { deleteProd, getSingleProduct } from "@/lib/axiosHelper"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 
@@ -10,7 +10,7 @@ const DeleteProductPage = () => {
   const [productInfo, setProductInfo] = useState(null)
 
   const delProduct = async () => {
-    const { status, message } = await deleteProduct(id)
+    const { status, message } = await deleteProd(id)
 
     if (status === "success") {
       return router.push("/products")

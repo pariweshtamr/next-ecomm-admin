@@ -7,11 +7,11 @@ const Home = () => {
 
   return (
     <Layout>
-      <div className="text-blue-900 flex justify-between">
+      <div className="text-[#0c0c0c] flex justify-between">
         <h2>
           Hello, <b>{session?.user?.name}</b>{" "}
         </h2>
-        <div className="flex items-center bg-gray-300 text-black rounded-full">
+        <div className="flex items-center bg-white text-black rounded-full">
           <Image
             src={session?.user?.image}
             alt="profile-img"
