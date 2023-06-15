@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  @apply font-montserrat;
+}
+
 img {
   max-height: 100%;
 }
@@ -9,7 +13,7 @@ img {
 input,
 textarea,
 select {
-  @apply border border-white rounded-md p-2 w-full;
+  @apply border border-white rounded-md p-2 w-full bg-alt;
   @apply mb-3;
 }
 

@@ -20,12 +20,14 @@ const ProductForm = ({
   _id,
   images: existingImages,
   category,
+  properties,
 }) => {
   const [images, setImages] = useState(existingImages || [])
   const [form, setForm] = useState(
     { title, desc, price, category } || initialState
   )
   const [cats, setCats] = useState([])
+  const [productProperties, setProductProperties] = useState(properties || {})
   const [isUploading, setIsUploading] = useState(false)
   const router = useRouter()
   const cloudName = process.env.NEXT_PUBLIC_CLOUDNAME
@@ -67,6 +69,7 @@ const ProductForm = ({
         ...form,
         _id,
         images,
+        properties: productProperties,
       })
 
       if (status === "success") {
@@ -74,7 +77,11 @@ const ProductForm = ({
       }
     } else {
       // add new product
-      const { status, message, product } = await addProduct({ ...form, images })
+      const { status, message, product } = await addProduct({
+        ...form,
+        images,
+        properties: productProperties,
+      })
 
       if (status === "success") {
         return router.push("/products")
@@ -84,6 +91,27 @@ const ProductForm = ({
 
   const updateImagesOrder = (images) => {
     setImages(images)
+  }
+
+  const setProductProp = (propName, value) => {
+    setProductProperties((prev) => {
+      const newProductProps = { ...prev }
+      newProductProps[propName] = value
+      return newProductProps
+    })
+  }
+
+  // properties are only given to main parent category so to show properties for a particular product we need to get the parent category first
+  const propertiesToFill = []
+  if (cats?.length > 0 && category) {
+    let catInfo = cats.find(({ _id }) => _id === category)
+    propertiesToFill.push(...catInfo?.properties)
+
+    while (catInfo?.parent?._id) {
+      const parentCat = cats.find(({ _id }) => _id === catInfo.parent._id)
+      propertiesToFill.push(...parentCat.properties)
+      catInfo = parentCat
+    }
   }
 
   useEffect(() => {
@@ -114,6 +142,22 @@ const ProductForm = ({
             </option>
           ))}
       </select>
+      {propertiesToFill?.length > 0 &&
+        propertiesToFill?.map((p) => (
+          <div key={p._id} className="flex gap-2">
+            <div>{p.name}</div>
+            <select
+              onChange={(e) => setProductProp(p.name, e.target.value)}
+              value={productProperties[p?.name]}
+            >
+              {p.values.map((v) => (
+                <option value={v} key={v}>
+                  {v}
+                </option>
+              ))}
+            </select>
+          </div>
+        ))}
       <label>Photos</label>
       <div className="mb-2 flex flex-wrap gap-2">
         <ReactSortable

@@ -16,6 +16,7 @@ const EditProductPage = () => {
     }
     fetchSingleProduct()
   }, [id])
+
   return (
     <Layout>
       <h1>Edit Product</h1>

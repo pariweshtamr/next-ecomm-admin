@@ -18,6 +18,7 @@ const ProductSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "Category",
     },
+    properties: { type: Object },
   },
   {
     timestamps: true,

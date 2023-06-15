@@ -224,7 +224,6 @@ const Categories = () => {
             <tr>
               <td>Category name</td>
               <td>Parent category</td>
-              <td>Properties</td>
               <td>Actions</td>
             </tr>
           </thead>
@@ -234,7 +233,6 @@ const Categories = () => {
                 <tr key={category._id}>
                   <td>{category.name}</td>
                   <td>{category?.parent?.name}</td>
-                  <td></td>
                   <td className="flex gap-1.5">
                     <button
                       className="btn-secondary flex items-center gap-1.5"

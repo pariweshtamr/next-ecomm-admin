@@ -5,10 +5,10 @@ export default function Layout({ children }) {
   const { data: session } = useSession()
   if (!session) {
     return (
-      <div className="bg-blue-900 w-screen h-screen flex items-center">
+      <div className="bg-alt w-screen h-screen flex items-center">
         <div className="text-center w-full">
           <button
-            className="bg-white p-2 px-4 rounded-md"
+            className="bg-textColor p-2 px-4 rounded-md"
             onClick={() => signIn("google")}
           >
             Login with Google
@@ -18,9 +18,9 @@ export default function Layout({ children }) {
     )
   }
   return (
-    <div className="bg-white min-h-screen flex">
-      <Nav />
-      <div className="bg-[#f2f2f2] flex-grow mt-2 mr-2 mb-2 rounded-lg p-4">
+    <div className="bg-alt min-h-screen flex">
+      <Nav className="w-[25%]" />
+      <div className="w-[75%] flex-grow bg-[#fff] mt-2 mr-2 mb-2 rounded-lg p-10">
         {children}
       </div>
     </div>
