@@ -21,8 +21,8 @@ const Home = () => {
 
   return (
     <Layout>
-      <div className="text-[#161313] flex justify-between gap-8">
-        <div className="flex flex-col w-1/2 gap-3">
+      <div className="text-[#161313] flex justify-between gap-8 lg:flex-col">
+        <div className="flex flex-col w-1/2 gap-3 lg:w-full lg:text-center">
           {currentHr < 12 ? (
             <p className="flex flex-col text-6xl gap-2">
               Good Morning,
@@ -46,15 +46,15 @@ const Home = () => {
             </h1>
           )}
 
-          <p className="text-gray-500 pr-20">
+          <p className="text-gray-500 pr-20 lg:px-5">
             This admin panel is a tool that helps organize and apply CRUD
             operations to products and categories of an online E-Commerce
             platoform.
           </p>
         </div>
 
-        <div className="flex flex-col w-1/2">
-          <div className="h-max w-max flex items-center self-end bg-[#f2f2f2] text-black rounded-full">
+        <div className="flex flex-col w-1/2 lg:w-full">
+          <div className="h-max w-max flex items-center self-end bg-[#f2f2f2] text-black rounded-full lg:hidden">
             <Image
               src={session?.user?.image}
               alt="profile-img"
@@ -68,7 +68,7 @@ const Home = () => {
           <div>
             <h2 className="mb-3 font-bold text-2xl">Categories</h2>
 
-            <div className="flex justify-between">
+            <div className="flex justify-between lg:grid xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-2 md:place-items-center">
               {parentCats?.length &&
                 parentCats?.map((cat) => (
                   <div

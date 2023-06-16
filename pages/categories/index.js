@@ -198,12 +198,16 @@ const Categories = () => {
         </div>
 
         <div className="flex gap-2">
-          <button type="submit" className="btn-success py-1">
+          <button
+            type="submit"
+            className="btn-success py-1 disabled:bg-gray-200 hover:disabled:shadow-none disabled:text-gray-400"
+            disabled={!name}
+          >
             Save
           </button>
           {editedCategory && (
             <button
-              className="btn-primary"
+              className="btn-red text-white"
               type="button"
               onClick={() => {
                 setEditedCategory(null)
@@ -222,7 +226,7 @@ const Categories = () => {
         <table className="basic mt-4">
           <thead>
             <tr>
-              <td>Category name</td>
+              <td>Name</td>
               <td>Parent category</td>
               <td>Actions</td>
             </tr>
@@ -233,7 +237,7 @@ const Categories = () => {
                 <tr key={category._id}>
                   <td>{category.name}</td>
                   <td>{category?.parent?.name}</td>
-                  <td className="flex gap-1.5">
+                  <td className="flex gap-2">
                     <button
                       className="btn-secondary flex items-center gap-1.5"
                       onClick={() => editCategory(category)}

@@ -38,19 +38,19 @@ const Products = () => {
   }, [])
 
   return (
-    <Layout>
+    <Layout className="md:mb-4">
       <Link
         href="/products/new"
-        className="bg-[#0c0c0c] text-white py-2.5 px-4 rounded-md"
+        className="bg-textColor text-white py-2.5 px-4 rounded-md"
       >
         Add new product
       </Link>
-      <table className="basic mt-6">
+      <table className="basic mt-6 md:w-1">
         <thead>
           <tr>
-            <td>Product name</td>
-            <td>Product category</td>
-            <td>Product price</td>
+            <td>Name</td>
+            <td>Category</td>
+            <td>Price</td>
             <td>Actions</td>
           </tr>
         </thead>
@@ -61,7 +61,7 @@ const Products = () => {
                 <td>{product.title}</td>
                 <td>{product?.category?.name}</td>
                 <td>${product.price}</td>
-                <td className="flex gap-1.5">
+                <td className="flex gap-2">
                   <Link
                     href={`/products/edit/${product._id}`}
                     className="flex items-center gap-1"

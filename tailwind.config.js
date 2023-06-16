@@ -21,6 +21,30 @@ module.exports = {
         success: "#AEFFBE",
       },
     },
+    screens: {
+      "2xl": { max: "1535px" },
+      // => @media (max-width: 1535px) { ... }
+
+      "min-xl": { min: "1800px" },
+
+      xl: { max: "1279px" },
+      // => @media (max-width: 1279px) { ... }
+
+      lg: { max: "1024px" },
+      // => @media (max-width: 1023px) { ... }
+
+      "min-lg": { min: "1023px" },
+      "min-md": { min: "821px" },
+
+      md: { max: "820px" },
+      // => @media (max-width: 767px) { ... }
+
+      sm: { max: "639px" },
+      // => @media (max-width: 639px) { ... }
+
+      xs: { max: "479px" },
+      // => @media (max-width: 479px) { ... }
+    },
   },
   plugins: [],
 }
