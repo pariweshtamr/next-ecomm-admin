@@ -1,5 +1,6 @@
 import dbConnect from "@/lib/mongoose"
 import Category from "@/models/CategorySchema"
+import { isAdminRequest } from "../auth/[...nextauth]"
 
 const addCat = async (req, res) => {
   const { parentCat, ...rest } = req.body
@@ -77,8 +78,8 @@ const deleteCat = async (req, res) => {
 
 async function handler(req, res) {
   const { method } = req
-
   await dbConnect()
+  await isAdminRequest(req, res)
 
   switch (method) {
     case "POST":

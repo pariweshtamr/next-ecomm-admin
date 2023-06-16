@@ -1,5 +1,6 @@
 import dbConnect from "@/lib/mongoose"
 import Category from "@/models/CategorySchema"
+import { isAdminRequest } from "../auth/[...nextauth]"
 
 const getParentCats = async (req, res) => {
   try {
@@ -14,6 +15,7 @@ const getParentCats = async (req, res) => {
 async function handler(req, res) {
   const { method } = req
   await dbConnect()
+  await isAdminRequest(req, res)
 
   switch (method) {
     case "GET":

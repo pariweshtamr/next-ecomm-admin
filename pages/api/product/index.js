@@ -1,5 +1,6 @@
 import dbConnect from "@/lib/mongoose"
 import Product from "@/models/ProductSchema"
+import { isAdminRequest } from "../auth/[...nextauth]"
 
 const addProd = async (req, res) => {
   try {
@@ -79,8 +80,8 @@ const deleteProd = async (req, res) => {
 
 async function handler(req, res) {
   const { method } = req
-
   await dbConnect()
+  await isAdminRequest(req, res)
 
   switch (method) {
     case "POST":

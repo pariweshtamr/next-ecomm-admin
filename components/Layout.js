@@ -8,7 +8,7 @@ export default function Layout({ children }) {
       <div className="bg-alt w-screen h-screen flex items-center">
         <div className="text-center w-full">
           <button
-            className="bg-textColor p-2 px-4 rounded-md"
+            className="bg-gray-200 p-2 px-4 rounded-md"
             onClick={() => signIn("google")}
           >
             Login with Google
