@@ -27,6 +27,7 @@ const ProductForm = ({
     { title, desc, price, category } || initialState
   )
   const [cats, setCats] = useState([])
+  const [categoriesLoading, setCategoriesLoading] = useState([])
   const [productProperties, setProductProperties] = useState(properties || {})
   const [isUploading, setIsUploading] = useState(false)
   const router = useRouter()
@@ -116,8 +117,10 @@ const ProductForm = ({
 
   useEffect(() => {
     const fetchCategories = async () => {
+      setCategoriesLoading(true)
       const categories = await getAllCategories()
       setCats(categories)
+      setCategoriesLoading(false)
     }
     fetchCategories()
   }, [])
@@ -142,6 +145,11 @@ const ProductForm = ({
             </option>
           ))}
       </select>
+      {categoriesLoading && (
+        <div className="py-4">
+          <Spinner />
+        </div>
+      )}
       {propertiesToFill?.length > 0 &&
         propertiesToFill?.map((p) => (
           <div key={p._id} className="">

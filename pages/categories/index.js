@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout"
+import Spinner from "@/components/Spinner"
 import {
   addCategory,
   deleteCat,
@@ -14,6 +15,7 @@ const Categories = () => {
   const [editedCategory, setEditedCategory] = useState(null)
   const [cats, setCats] = useState([])
   const [properties, setProperties] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -82,8 +84,10 @@ const Categories = () => {
   }
 
   const fetchCategories = async () => {
+    setIsLoading(true)
     const categories = await getAllCategories()
     setCats(categories)
+    setIsLoading(false)
   }
 
   const addProperty = () => {
@@ -158,7 +162,7 @@ const Categories = () => {
             Add new peoperty
           </button>
 
-          {properties?.length > 0 &&
+          {!!properties?.length > 0 &&
             properties.map((property, i) => (
               <div className="flex gap-2 mt-2" key={i}>
                 <input
@@ -226,12 +230,21 @@ const Categories = () => {
         <table className="basic mt-4">
           <thead>
             <tr>
-              <td>Name</td>
-              <td>Parent category</td>
-              <td>Actions</td>
+              <th>Name</th>
+              <th>Parent category</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
+            {isLoading && (
+              <tr>
+                <td colSpan={5}>
+                  <div className="py-4">
+                    <Spinner fullWidth={true} />
+                  </div>
+                </td>
+              </tr>
+            )}
             {cats?.length > 0 &&
               cats.map((category) => (
                 <tr key={category._id}>
