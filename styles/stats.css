@@ -1,0 +1,9 @@
+.tile {
+  @apply bg-white shadow-md p-4 rounded-md;
+}
+.tile_header {
+  @apply uppercase text-gray-500 font-bold text-sm;
+}
+.tile_number {
+  @apply text-4xl text-center font-[500] my-4;
+}

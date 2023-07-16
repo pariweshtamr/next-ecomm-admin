@@ -1,4 +1,6 @@
 import Layout from "@/components/Layout"
+import StatHeader from "@/components/StatHeader"
+import Stats from "@/components/Stats"
 import { getParentCategories } from "@/lib/axiosHelper"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
@@ -49,7 +51,7 @@ const Home = () => {
           <p className="text-gray-500 pr-20 lg:px-5">
             This admin panel is a tool that helps organize and apply CRUD
             operations to products and categories of an online E-Commerce
-            platoform.
+            platform.
           </p>
         </div>
 
@@ -325,6 +327,11 @@ const Home = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="py-10">
+        <StatHeader />
+        <Stats />
       </div>
     </Layout>
   )
