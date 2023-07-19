@@ -19,7 +19,7 @@ const AdminsPage = () => {
 
   const addAdmin = async (e) => {
     e.preventDefault()
-    const { status, message, admin } = await addAdminEmail({ email })
+    const { status, message } = await addAdminEmail({ email })
     if (status === "success") {
       Swal.fire({
         title: "Success!",
