@@ -4,8 +4,6 @@ import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
 import NextAuth, { getServerSession } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 
-const adminEmails = ["pariwesh071@gmail.com"]
-
 const isAdminEmail = async (email) => {
   const isAdmin = await Admin.findOne({ email })
 
@@ -24,6 +22,8 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
+
+  secret: process.env.NEXTAUTH_SECRET
 
   callbacks: {
     session: async ({ session, token, user }) => {
