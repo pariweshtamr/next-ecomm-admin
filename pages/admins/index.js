@@ -101,7 +101,7 @@ const AdminsPage = () => {
         <tbody>
           {isLoading && (
             <tr>
-              <td colSpan={2}>
+              <td colSpan={3}>
                 <div className="py-4">
                   <Spinner fullWidth={true} />
                 </div>
