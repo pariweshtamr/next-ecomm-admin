@@ -1,3 +1,7 @@
+.tiles_grid {
+  @apply grid grid-cols-3 gap-4 sm:grid-cols-1;
+}
+
 .tile {
   @apply bg-white shadow-md p-4 rounded-md;
 }
@@ -6,4 +10,8 @@
 }
 .tile_number {
   @apply text-4xl text-center font-[500] my-4;
+}
+
+.tile_desc {
+  @apply text-center text-sm text-gray-400;
 }
