@@ -1,6 +1,6 @@
 import Nav from "@/components/Nav"
 import { signIn, useSession } from "next-auth/react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Logo from "./Logo"
 import { useRouter } from "next/router"
 import { RingLoader } from "react-spinners"

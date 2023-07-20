@@ -69,6 +69,7 @@ const AdminsPage = () => {
   useEffect(() => {
     fetchAdmins()
   }, [])
+
   return (
     <Layout>
       <h1>Admins</h1>
