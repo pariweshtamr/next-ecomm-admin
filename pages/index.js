@@ -18,13 +18,10 @@ const Home = () => {
       return
     } else if (status === "authenticated") {
       setIsLoading(true)
-      const loadingTimer = setTimeout(() => {
-        router.push(`/dashboard`)
-      }, 2000)
-
-      return () => clearTimeout(loadingTimer)
+      router.push(`/dashboard`)
     }
   }, [status, session, router])
+
   return (
     <div className="bg-alt w-screen h-screen flex items-center">
       <div className="text-center w-full">
