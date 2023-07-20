@@ -24,7 +24,10 @@ const Nav = ({ show }) => {
       <Logo custom="mb-5 mr-4" />
 
       <nav className="flex flex-col gap-2">
-        <Link href="/" className={pathname === "/" ? activeLink : inactiveLink}>
+        <Link
+          href="/"
+          className={pathname === "/dashboard" ? activeLink : inactiveLink}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
