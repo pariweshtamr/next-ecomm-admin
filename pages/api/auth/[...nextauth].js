@@ -8,8 +8,10 @@ import GoogleProvider from "next-auth/providers/google"
 const isAdminEmail = async (email) => {
   await dbConnect()
   const isAdmin = await Admin.findOne({ email })
-
-  return !!isAdmin?._id
+  if (isAdmin?._id) {
+    return true
+  }
+  return false
 }
 
 export const authOptions = {
