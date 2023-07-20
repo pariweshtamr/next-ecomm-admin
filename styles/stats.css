@@ -11,6 +11,9 @@
 .tile_number {
   @apply text-4xl text-center font-[500] my-4;
 }
+.tile_rev {
+  @apply text-4xl text-center font-[500] my-4 text-[#66b766];
+}
 
 .tile_desc {
   @apply text-center text-sm text-gray-400;

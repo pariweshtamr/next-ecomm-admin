@@ -88,7 +88,7 @@ const Stats = () => {
       <div className="tiles_grid">
         <div className="tile">
           <h3 className="tile_header">Today</h3>
-          <div className="tile_number">$ {ordersTotal(ordersToday)}</div>
+          <div className="tile_rev">$ {ordersTotal(ordersToday)}</div>
           <div className="tile_desc">
             {ordersToday.length === 1
               ? `${ordersToday.length} order today`
@@ -97,7 +97,7 @@ const Stats = () => {
         </div>
         <div className="tile">
           <h3 className="tile_header">This week</h3>
-          <div className="tile_number">$ {ordersTotal(ordersWeek)}</div>
+          <div className="tile_rev">$ {ordersTotal(ordersWeek)}</div>
           <div className="tile_desc">
             {" "}
             {ordersWeek.length === 1
@@ -107,7 +107,7 @@ const Stats = () => {
         </div>
         <div className="tile">
           <h3 className="tile_header">This month</h3>
-          <div className="tile_number">$ {ordersTotal(ordersMonth)}</div>
+          <div className="tile_rev">$ {ordersTotal(ordersMonth)}</div>
           <div className="tile_desc">
             {ordersMonth.length === 1
               ? `${ordersMonth.length} order this month`
