@@ -1,5 +1,4 @@
 import Layout from "@/components/Layout"
-import StatHeader from "@/components/StatHeader"
 import Stats from "@/components/Stats"
 import { getParentCategories } from "@/lib/axiosHelper"
 import { useSession } from "next-auth/react"
@@ -71,7 +70,7 @@ const Home = () => {
             <h2 className="mb-3 font-bold text-2xl">Categories</h2>
 
             <div className="flex justify-between lg:grid xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-2 md:place-items-center">
-              {parentCats?.length &&
+              {!!parentCats?.length &&
                 parentCats?.map((cat) => (
                   <div
                     key={cat._id}
@@ -330,7 +329,6 @@ const Home = () => {
       </div>
 
       <div className="py-10">
-        <StatHeader />
         <Stats />
       </div>
     </Layout>
