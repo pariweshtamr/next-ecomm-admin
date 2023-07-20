@@ -23,11 +23,12 @@ export const authOptions = {
     }),
   ],
 
-  secret: process.env.NEXTAUTH_SECRET,
+  // secret: process.env.NEXTAUTH_SECRET,
 
   callbacks: {
     session: async ({ session, token, user }) => {
-      if (await isAdminEmail(session?.user?.email)) {
+      const isAdmin = await isAdminEmail(session?.user?.email)
+      if (isAdmin) {
         return session
       } else {
         return false
