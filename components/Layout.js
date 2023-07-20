@@ -13,7 +13,7 @@ export default function Layout({ children }) {
 
   const handleLogin = async () => {
     setIsLoading(true)
-    signIn("google", {
+    await signIn("google", {
       callbackUrl: `${process.env.NEXT_PUBLIC_URL}`,
     })
   }
@@ -43,7 +43,7 @@ export default function Layout({ children }) {
           </button>
 
           {isLoading && (
-            <div className="loader flex justify-center w-full">
+            <div className="loader flex justify-center w-full mt-4">
               <RingLoader color="#0071bb" size={40} />
             </div>
           )}
