@@ -13,9 +13,7 @@ export default function Layout({ children }) {
 
   const handleLogin = async () => {
     setIsLoading(true)
-    await signIn("google", {
-      callbackUrl: `${process.env.NEXT_PUBLIC_URL}`,
-    })
+    await signIn("google")
   }
 
   useEffect(() => {
