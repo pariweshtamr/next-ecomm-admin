@@ -43,7 +43,7 @@ export default function Layout({ children }) {
           </button>
 
           {isLoading && (
-            <div className="loader">
+            <div className="loader flex justify-center w-full">
               <RingLoader color="#0071bb" size={40} />
             </div>
           )}
