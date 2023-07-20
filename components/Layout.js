@@ -2,20 +2,51 @@ import Nav from "@/components/Nav"
 import { signIn, useSession } from "next-auth/react"
 import { useState } from "react"
 import Logo from "./Logo"
+import { useRouter } from "next/router"
+import { RingLoader } from "react-spinners"
 
 export default function Layout({ children }) {
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
   const [showNav, setShowNav] = useState(false)
+  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleLogin = async () => {
+    setIsLoading(true)
+    signIn("google", {
+      callbackUrl: `${process.env.NEXT_PUBLIC_URL}`,
+    })
+  }
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      return
+    } else if (status === "authenticated") {
+      setIsLoading(true)
+      const loadingTimer = setTimeout(() => {
+        router.push(`/`)
+      }, 2000)
+
+      return () => clearTimeout(loadingTimer)
+    }
+  }, [status, session, router])
+
   if (!session) {
     return (
       <div className="bg-alt w-screen h-screen flex items-center">
         <div className="text-center w-full">
           <button
             className="bg-gray-200 p-2 px-4 rounded-md"
-            onClick={() => signIn("google")}
+            onClick={handleLogin}
           >
             Login with Google
           </button>
+
+          {isLoading && (
+            <div className="loader">
+              <RingLoader color="#0071bb" size={40} />
+            </div>
+          )}
         </div>
       </div>
     )
