@@ -1,16 +1,15 @@
 import clientPromise from "@/lib/mongodb"
+import dbConnect from "@/lib/mongoose"
 import Admin from "@/models/AdminSchema"
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
 import NextAuth, { getServerSession } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 
 const isAdminEmail = async (email) => {
+  await dbConnect()
   const isAdmin = await Admin.findOne({ email })
 
-  if (isAdmin?._id) {
-    return true
-  }
-  return false
+  return !!isAdmin?._id
 }
 
 export const authOptions = {
