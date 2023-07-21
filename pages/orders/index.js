@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout"
 import Spinner from "@/components/Spinner"
 import { getAllOrders } from "@/lib/axiosHelper"
+import { getSession } from "next-auth/react"
 import { useEffect, useState } from "react"
 
 const Orders = () => {
@@ -69,5 +70,21 @@ const Orders = () => {
       </table>
     </Layout>
   )
+}
+
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context)
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+      },
+    }
+  }
+
+  return {
+    props: {},
+  }
 }
 export default Orders

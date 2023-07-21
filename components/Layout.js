@@ -1,9 +1,8 @@
 import Nav from "@/components/Nav"
-import { useSession } from "next-auth/react"
 import { useState } from "react"
 import Logo from "./Logo"
 
-export default function Layout({ children }) {
+const Layout = ({ children }) => {
   const [showNav, setShowNav] = useState(false)
 
   return (
@@ -39,3 +38,5 @@ export default function Layout({ children }) {
     </div>
   )
 }
+
+export default Layout

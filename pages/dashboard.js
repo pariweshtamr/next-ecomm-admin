@@ -1,7 +1,7 @@
 import Layout from "@/components/Layout"
 import Stats from "@/components/Stats"
 import { getParentCategories } from "@/lib/axiosHelper"
-import { useSession } from "next-auth/react"
+import { getSession, useSession } from "next-auth/react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 
@@ -333,6 +333,22 @@ const Dashboard = () => {
       </div>
     </Layout>
   )
+}
+
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context)
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+      },
+    }
+  }
+
+  return {
+    props: {},
+  }
 }
 
 export default Dashboard

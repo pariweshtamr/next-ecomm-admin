@@ -5,6 +5,7 @@ import {
   getSavedSetting,
   saveSettings,
 } from "@/lib/axiosHelper"
+import { getSession } from "next-auth/react"
 import { useEffect, useState } from "react"
 import Swal from "sweetalert2"
 
@@ -110,5 +111,21 @@ const Settings = () => {
       )}
     </Layout>
   )
+}
+
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context)
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+      },
+    }
+  }
+
+  return {
+    props: {},
+  }
 }
 export default Settings

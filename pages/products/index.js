@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout"
 import Spinner from "@/components/Spinner"
 import { deleteProd, getAllProducts } from "@/lib/axiosHelper"
+import { getSession } from "next-auth/react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import Swal from "sweetalert2"
@@ -116,5 +117,20 @@ const Products = () => {
       </table>
     </Layout>
   )
+}
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context)
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+      },
+    }
+  }
+
+  return {
+    props: {},
+  }
 }
 export default Products

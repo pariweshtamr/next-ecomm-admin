@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout"
 import { deleteProd, getSingleProduct } from "@/lib/axiosHelper"
+import { getSession } from "next-auth/react"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 
@@ -44,5 +45,20 @@ const DeleteProductPage = () => {
       </div>
     </Layout>
   )
+}
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context)
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+      },
+    }
+  }
+
+  return {
+    props: {},
+  }
 }
 export default DeleteProductPage
