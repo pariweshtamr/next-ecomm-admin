@@ -33,8 +33,8 @@ const Home = () => {
         </button>
 
         {isLoading && (
-          <div className="loader flex justify-center w-full mt-4">
-            <DotLoader color="#0071bb" size={40} />
+          <div className="loader flex justify-center w-full mt-6">
+            <DotLoader size={40} />
           </div>
         )}
       </div>
