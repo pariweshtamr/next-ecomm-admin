@@ -1,7 +1,7 @@
 import { signIn, useSession } from "next-auth/react"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
-import { RingLoader } from "react-spinners"
+import { DotLoader, RingLoader } from "react-spinners"
 
 const Home = () => {
   const { data: session, status } = useSession()
@@ -34,7 +34,7 @@ const Home = () => {
 
         {isLoading && (
           <div className="loader flex justify-center w-full mt-4">
-            <RingLoader color="#0071bb" size={40} />
+            <DotLoader color="#0071bb" size={40} />
           </div>
         )}
       </div>

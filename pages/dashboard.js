@@ -4,16 +4,20 @@ import { getParentCategories } from "@/lib/axiosHelper"
 import { getSession, useSession } from "next-auth/react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
+import { DotLoader } from "react-spinners"
 
 const Dashboard = () => {
   const { data: session } = useSession()
   const [parentCats, setParentCats] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
   const today = new Date()
   const currentHr = today.getHours()
 
   const fetchParentCategories = async () => {
+    setIsLoading(true)
     const parentCategories = await getParentCategories()
     setParentCats(parentCategories)
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -70,6 +74,11 @@ const Dashboard = () => {
             <h2 className="mb-3 font-bold text-2xl">Categories</h2>
 
             <div className="flex justify-between lg:grid xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-2 md:place-items-center">
+              {isLoading && (
+                <div className="flex justify-center items-center w-full">
+                  <DotLoader size={36} />
+                </div>
+              )}
               {!!parentCats?.length &&
                 parentCats?.map((cat) => (
                   <div
